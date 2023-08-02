@@ -1,4 +1,7 @@
+import axios from "axios";
+import { AppDispatch, useAppDispatch } from "../store";
 import * as signupTypes from "./signup.types";
+import { SignupActionType } from "./signup.reducer";
 
 export interface SignupType {
     name: string;
@@ -6,14 +9,15 @@ export interface SignupType {
     password: string;
 }
 
-export const signupSucess = (payload: SignupType) => {
-    return {type: signupTypes.SIGNUP_SUCCESS, payload}
+export const signupSuccess = (payload: SignupType) => {
+    return { type: signupTypes.SIGNUP_SUCCESS, payload }
 }
 
-export const signupError = () => {
+export const signupError = ():any => {
+    
     return { type: signupTypes.SIGNUP_ERROR };
 };
 
-export const signupLoading = () => {
-    return {type: signupTypes.SIGNUP_LOADING}
+export const signupLoading = ():any => {
+    return { type: signupTypes.SIGNUP_LOADING }
 }

@@ -14,8 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useToast } from "@chakra-ui/react";
-import axios from 'axios';
-// import { loginRequest } from '../redux/auth/login.actions';
 
 
 export default function LoginForm() {

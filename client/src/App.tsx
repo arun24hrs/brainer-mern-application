@@ -1,17 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import LoginForm from './components/Login';
+import Login from './components/Login';
 import Navbar from './components/Navbar';
 import {Route, Routes} from 'react-router-dom'
-import Products from './components/Products';
+import SignupCard from './components/Signup';
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      
       <Routes>
-        <Route path="/" element={<LoginForm/>}></Route> 
+        <Route path="/" element={<Login/>}></Route> 
+        <Route path="/login" element={<Login/>}></Route> 
+        <Route path="/signup" element={<SignupCard/>}></Route> 
       </Routes>
     </div>
   );

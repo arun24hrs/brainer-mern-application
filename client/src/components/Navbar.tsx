@@ -1,87 +1,19 @@
-'use client'
+import { Box, Button, Flex, Image } from '@chakra-ui/react'
+import React from 'react'
+import { Link } from "react-router-dom";
 
-import {
-  Box,
-  Flex,
-  Avatar,
-  Text,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-  useColorMode,
-  Center,
-} from '@chakra-ui/react'
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../redux/store";
-
-interface Props {
-  children: React.ReactNode
-}
-
-const NavLink = (props: Props) => {
-  const { children } = props
-
+const Navbar = () => {
   return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
-      }}
-      href={'#'}>
-      {children}
+    <Box p={"20px"} boxShadow={"rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px"} borderBottom={"1px solid blue"}>
+      <Flex alignItems={"center"} justifyContent={"space-between"}>
+        <Image src='https://th.bing.com/th/id/R.c3a28cfd897281dd0013692b0eb40775?rik=wP4PmcEJ6jiMVw&riu=http%3a%2f%2fbrainerhub.com%2fimages%2fbrainerhub_logo.png&ehk=LriaM%2f3vkLqIkFvCjXkTylotTAZGlvTO24NhsZuRvlM%3d&risl=&pid=ImgRaw&r=0' alt='logo' width={{base: "100px", md: "200px"}}/>
+        <Link to="/products"><Button colorScheme="blue" size={{base: "xs", md: "md", lg: "lg"}}>Products</Button></Link>
+        <Link to={"/signup"}><Button colorScheme="blue" size={{base: "xs", md: "md", lg: "lg"}}>Sign Up</Button></Link> 
+        <Link to={"/login"}><Button colorScheme="blue" size={{base: "xs", md: "md", lg: "lg"}}>Login</Button></Link>
+        
+      </Flex>
     </Box>
   )
 }
 
-export default function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>Logo</Box>
-            <Box _hover={{cursor: "Pointer"}}>Products</Box>
-
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar bg='teal.500' />
-                </MenuButton>
-                <MenuList alignItems={'center'}>
-                  <br />
-                  <Center>
-                  <Avatar bg='teal.500' />
-                  </Center>
-                  <br />
-                  <Center>
-                    <p>Username</p>
-                  </Center>
-                  <br />
-                  <MenuDivider />
-                  <MenuItem>Logout</MenuItem>
-                </MenuList>
-              </Menu>
-            </Stack>
-          </Flex>
-        </Flex>
-      </Box>
-    </>
-  )
-}
+export default Navbar

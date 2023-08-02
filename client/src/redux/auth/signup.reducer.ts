@@ -1,4 +1,3 @@
-import { SignupType } from "./signup.actions";
 import * as singupType from "./signup.types";
 
 export interface SignupDetailsType{
@@ -26,13 +25,13 @@ export const signupReducer = (state = initSignupState, action: SignupActionType)
 
     switch(type){
         case (singupType.SIGNUP_SUCCESS):{
-            return {...state, payload};
+            return {...state, isLoading:false, isError:false, details:{...payload}};
         }
         case(singupType.SIGNUP_LOADING):{
             return {...state, isLoading: true}
         }
         case(singupType.SIGNUP_ERROR):{
-            return {...state, isError: true}
+            return {...state, isLoading: false, isError: true}
         }
         default: {
             return state;
