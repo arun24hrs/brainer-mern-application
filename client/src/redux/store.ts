@@ -6,12 +6,12 @@ import {
   } from "redux";
   import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
   import thunk from "redux-thunk";
-//   import { reducer as ProductReducer } from "./Product/product.reducer";
+  import { productReducer } from "./products/product.reducer";
   import { signupReducer } from "./auth/signup.reducer";
   import { loginReducer } from "./auth/login.reducer"
   
   const root = combineReducers({
-    // ProductReducer,
+    productReducer,
     signupReducer,
     loginReducer,
   });

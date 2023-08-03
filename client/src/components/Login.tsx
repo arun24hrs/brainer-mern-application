@@ -14,23 +14,32 @@ import {
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { useToast } from "@chakra-ui/react";
+import { loginError, loginRequest, loginSuccess } from '../redux/auth/login.actions';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginForm() {
     const dispatch = useAppDispatch();
+    const {isLoading, isError, isAuth, details} = useAppSelector((store)=>store.loginReducer)
+    const navigate = useNavigate()
     const toast = useToast();
     const [email, setEmail] = React.useState<string>("")
     const [password, setPassword] = React.useState<string>("")
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>):void => {
-        if(e.target.name == "password"){
+        if(e.target.name === "password"){
             setPassword(e.target.value)
         } else {
             setEmail(e.target.value)
         }
     }
 
+    if(isAuth){
+      navigate("/products")
+    }
     const handleFormSubmit = ():void => {
+      console.log("first")
         if (email === "" || password === "") {
             toast({
               title: "Warning! Form Incomplete",
@@ -43,7 +52,8 @@ export default function LoginForm() {
             return;
         }
         else {
-
+          dispatch(loginRequest())
+          axios.post("http://localhost:8080/users/login",{email,password}).then((res)=> dispatch(loginSuccess(res.data))).catch((err)=> dispatch(loginError()))
         }
     }
     
@@ -88,7 +98,7 @@ export default function LoginForm() {
                 _hover={{
                   bg: 'blue.500',
                 }}>
-                Sign in
+                {isLoading? "Loggin in..." : "Sign in"}
               </Button>
             </Stack>
           </Stack>

@@ -24,6 +24,7 @@ interface ActionType {
 }
 
 export const loginReducer = (state = initLoginState, action: ActionType) => {
+    console.log("third")
     const { type, payload } = action;
     switch(type){
         case loginTypes.LOGIN_SUCCESS:{
@@ -32,6 +33,7 @@ export const loginReducer = (state = initLoginState, action: ActionType) => {
                 details: payload,
                 isLoading: false,
                 isAuth: true,
+                isError: false
               };
         }
         case loginTypes.LOGIN_REQUEST:{

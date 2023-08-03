@@ -6,17 +6,18 @@ export interface LoginDetails {
 }
 
 export const loginSuccess = (payload: LoginDetails) => {
+    console.log("second")
     return {type: loginTypes.LOGIN_SUCCESS, payload}
 }
 
-export const loginRequest = () => {
+export const loginRequest = ():any => {
     return { type: loginTypes.LOGIN_REQUEST };
   };
   
-export const loginError = () => {
+export const loginError = ():any => {
     return { type: loginTypes.LOGIN_ERROR };
 };
   
-export const logoutUser = () => {
+export const logoutUser = ():any => {
     return { type: loginTypes.LOGOUT_USER };
 };

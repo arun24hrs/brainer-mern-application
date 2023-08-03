@@ -1,7 +1,7 @@
-import axios from "axios";
-import { AppDispatch, useAppDispatch } from "../store";
+// import axios from "axios";
+// import { AppDispatch, useAppDispatch } from "../store";
 import * as signupTypes from "./signup.types";
-import { SignupActionType } from "./signup.reducer";
+// import { SignupActionType } from "./signup.reducer";
 
 export interface SignupType {
     name: string;
