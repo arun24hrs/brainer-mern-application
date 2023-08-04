@@ -47,7 +47,6 @@ export default function SignupCard() {
         const signupDetails:SignupType = {
           name, email, password
         }
-        console.log("clicked")
         dispatch(signupLoading())
         axios.post('http://localhost:8080/users/register', signupDetails).then((res)=> dispatch(signupSuccess(res.data))).catch((err)=> dispatch(signupError()))
         } else {

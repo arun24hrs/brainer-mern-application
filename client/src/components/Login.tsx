@@ -39,7 +39,6 @@ export default function LoginForm() {
       navigate("/products")
     }
     const handleFormSubmit = ():void => {
-      console.log("first")
         if (email === "" || password === "") {
             toast({
               title: "Warning! Form Incomplete",

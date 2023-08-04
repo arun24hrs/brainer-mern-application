@@ -34,6 +34,7 @@ const Products = () => {
   const [description, setDescription] = React.useState("");
   const [sort, setSort] = React.useState("");
   const [quantity, setQuantity] = React.useState(0);
+  const [query, setQuery] = React.useState("")
   const { isLoading, isError, products }:ProdcutStoreType = useAppSelector(
     (store) => store.productReducer
     );
@@ -53,7 +54,6 @@ const Products = () => {
       setDescription(e.target.value);
     }
   };
-  console.log(products, page);
   const handleAddProduct = () => {
     if (
       name !== "" ||
@@ -105,6 +105,16 @@ const Products = () => {
     setSort(e.target.value);
     getProductsData();
     
+  }
+
+  const handleQuery = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  }
+
+  const handleSearch = () => {
+    dispatch(requestProds())
+    axios.get(`http://localhost:8080/products/search?q=${query}`).then((res)=> dispatch(getProds(res.data))).catch((err)=> dispatch(errorProds())).finally(()=> getProductsData());
+    console.log(products)
   }
 
 
@@ -193,6 +203,9 @@ const Products = () => {
               <option value={"priceHTL"}>High to Low</option>
               <option value={"priceLTH"} >Low to High</option>
             </Select>
+
+            <Input placeholder="Search by name" value={query} onChange={(e)=> handleQuery(e)}/>
+            <Button onClick={handleSearch}>Search</Button>
           </Box>
           <Grid templateColumns='repeat(3, 1fr)' gap={6}>
             {
