@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface ProductType extends Document {
-    image: string;
+  image: string;
   name: string;
   price: number;
   description: string;
